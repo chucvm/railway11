@@ -1,8 +1,8 @@
 USE testingsystem;
 
-SELECT * FROM	department;
+SELECT * FROM	Department;
 
-INSERT	INTO Department(Department_name)
+INSERT	INTO Department(DepartmentName)
 VALUE	(N'baove'),
 		(N'marketing'),
 		(N'sale'),
@@ -11,7 +11,7 @@ VALUE	(N'baove'),
         
 SELECT * FROM	position;
 
-INSERT	INTO	Position (position_Name)
+INSERT	INTO	`Position` (PositionName)
 VALUE	('Dev'),
 		('Test'),
         ('Scrum Master'),
@@ -19,30 +19,30 @@ VALUE	('Dev'),
         
 SELECT * FROM	`account`;
 
-INSERT INTO `account` (Email, Ueraname, FullName, Department_id, position_id, create_date)
+INSERT INTO `account` (Email, User_name, Full_Name, DepartmentID, PositionID, CreateDATE)
 VALUE	('AA@gmail.com', 'Aa', 'Nguyễn văn A', 1, 2, '2021-01-01'),
 		('BB@gmail.com', 'Bb', 'Nguyễn văn B', 2, 3, '2021-01-02'),
-        ('CC@gmail.com', 'Cc', 'Nguyễn văn C', 3, 4, '2021-01-03'),
-        ('DD@gmail.com', 'Dd', 'Nguyễn văn D', 4, 5, '2021-01-04'),
-        ('EE@gmail.com', 'Ee', 'Nguyễn văn E', 5, 6, '2021-01-05');
+        ('CC@gmail.com', 'Cc', 'Nguyễn văn C', 1, 4, '2021-01-03'),
+        ('DD@gmail.com', 'Dd', 'Nguyễn văn D', 2, 5, '2021-01-04'),
+        ('EE@gmail.com', 'Ee', 'Nguyễn văn E', 2, 6, '2021-01-05');
         
-SELECT * FROM `group`;
+SELECT * FROM `Group`;
 
-INSERT INTO `group` ( GroupName			, CreatorID		, CreateDate)
+INSERT INTO `Group` ( GroupName			, CreatorID		, CreateDATE)
 VALUE				('railway',				1			,'2021-02-01'),
-					('railway 01',			2			,'2021-02-02'),
-					('railway 02',			3			,'2021-03-03'),
-					('railway 03',			4			,'2021-04-04'),
-					('railway 04',			5			,'2021-05-05');
+					('railway 01',			1			,'2021-02-02'),
+					('railway 02',			2			,'2021-03-03'),
+					('railway 03',			2			,'2021-04-04'),
+					('railway 04',			1			,'2021-05-05');
                         
 SELECT * FROM GroupAccount;
 
 INSERT INTO GroupAccount (  GroupID	, AccountID	, JoinDate	 )
 VALUE					 (     1,		1		,'2021-02-01'),
-						(	   1,		2		,'2021-02-02'),
-                        (	   2,		3		,'2021-03-03'),
-                        (	   2,		4		,'2021-04-04'),
-                        (	   3,		5		,'2021-05-05');
+						(	   1,		1		,'2021-02-02'),
+                        (	   2,		2		,'2021-03-03'),
+                        (	   2,		2		,'2021-04-04'),
+                        (	   3,		1		,'2021-05-05');
                         
 SELECT * FROM TypeQuestion;
 
@@ -114,6 +114,13 @@ UPDATE 		`Account`
 SET 		Fullname 	= 	'Nguyễn Văn F', 
 			Email 		= 	'FFF@gmail.com'
 WHERE 		AccountID = 4;
+
+-- Question 4: Viết lệnh để lấy ra danh sách các phòng ban có >2 nhân viên
+SELECT * , COUNT(AccountID)
+FROM department		 
+JOIN `account` USING(DepartmentID)
+GROUP BY DepartmentID
+HAVING COUNT(AccountID) >=2;   
 
 
 
