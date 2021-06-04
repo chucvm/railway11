@@ -1,7 +1,10 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
+import java.util.Scanner;
 
 public class program_ass2 {
 
@@ -32,6 +35,11 @@ public class program_ass2 {
 		Position pos3 = new Position();
 		pos3.id = 3;
 		pos3.name = PositionName.Scrum_Master;
+		
+		Position pos4 = new Position();
+		pos4.id = 4;
+		pos4.name = PositionName.Test;
+
 
 //				insert Account
 		Account acc1 = new Account();
@@ -321,7 +329,90 @@ System.out.println(date);
 		date = simpleDateFormat.format(exam.createDate);
 		System.out.println(exam.code + ": " + date);
 		}
+		
+//		Exercise4
+//		Qs1
+		
+		Random random = new Random();
+		int n = random.nextInt();
+		System.out.println("Số ngẫu nhiên: " + n);
+		
+//		QSS2
+		
+		float f = random.nextFloat();
+		System.out.println("Số ngẫu nhiên: " + f);
+		
+//		QSS3:Khai báo 1 array bao gồm các tên của các bạn trong lớp, sau đó in ngẫu nhiên
+//		ra tên của 1 bạn
+		
+		String[] dsName = { "Chuc", "Hue", "Tuan", "Son", "Linh" };
+		int X = random.nextInt(dsName.length);
+		System.out.println("Tên ngẫu nhiên 1 bạn trong lớp: " +
+				dsName[X]);
+		
+//		Qss4:Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 24-07-1995 tới ngày 20-12-
+//		1995
+		int minDay = (int) LocalDate.of(1995, 7, 24).toEpochDay(); 
+		int maxDay = (int) LocalDate.of(1995, 12, 20).toEpochDay(); 
+		long RandomInt = minDay + random.nextInt(maxDay - minDay);
+		LocalDate randomDay = LocalDate.ofEpochDay(RandomInt);
+		System.out.println(randomDay);
+		
+//		QSS5:Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 1 năm trở lại đây
 
+		int now = (int) LocalDate.now().toEpochDay();
+		int randomDate = now - random.nextInt(365);
+		LocalDate reusultDate = LocalDate.ofEpochDay(randomDate);
+		System.out.println("Ngày ngẫu nhiên là: " + reusultDate);
+		
+//		QSS6:Lấy ngẫu nhiên 1 ngày trong quá khứ
+		
+		int maxDay1 = (int) LocalDate.now().toEpochDay();
+		long randomDay1 = random.nextInt(maxDay1);
+		LocalDate resultDate1 = LocalDate.ofEpochDay(randomDay1);
+		System.out.println("1 Ngày ngẫu nhiên trong quá khứ: " + resultDate1);
+		
+//		Question 7:Lấy ngẫu nhiên 1 số có 3 chữ số
+		
+		int z = random.nextInt(999 - 100 + 1) + 100; 
+		System.out.println(z);
+		
+//		Exercise 5: Input from console
+		
+//		Question 5:
+//		Viết lệnh cho phép người dùng tạo account (viết thành method)
+//		Đối với property Position, Người dùng nhập vào 1 2 3 4 và vào
+//		chương trình sẽ chuyển thành Position.Dev, Position.Test,
+//		Position.ScrumMaster, Position.PM
+		
+		 Scanner scanner = new Scanner(System.in);
+		 Account account = new Account();
+		 System.out.println("Mời bạn nhập vào tên người dùng:");
+		 acc1.fullName = scanner.nextLine();
+		 System.out.println("Mời bạn nhập vào email người dùng:");
+		 acc1.Email = scanner.nextLine();
+		 System.out.println("Người dùng nhập vào 1 2 3 4"
+		 + " vào chương trình sẽ chuyển thành "
+		 + "Position.Dev, PositionName.Test,Position.ScrumMaster, Position.PM:");
+		 Position pos5 = new Position();
+		 pos5.id =1;
+		 String position = scanner.nextLine();
+		 if(position.equals("1")){ 
+		 pos5.name = "Dev";
+		 }else if(position.equals("2")){ 
+		 pos5.name = "Test";
+		 }else if(position.equals("3")){ 
+		 pos5.name = "ScrumMaster";
+		 }else if(position.equals("4")){ 
+		 pos5.name = "PM";
+		 }else{
+		 pos5.name = "Phòng chờ";
+		 } 
+		 acc1.position = pos1;
+		 System.out.println(acc1.toString());
+		 
+
+			
 		}
 		
 	}
